@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfUi", "WpfUi\WpfUi.csproj", "{15249943-0D1D-4FEA-84B2-13377C078B66}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServersUi", "WpfUi\ServersUi.csproj", "{15249943-0D1D-4FEA-84B2-13377C078B66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServersTests", "Test\ServersTests.csproj", "{97D50F4C-3A55-4617-B961-B044B7C5C5DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{15249943-0D1D-4FEA-84B2-13377C078B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15249943-0D1D-4FEA-84B2-13377C078B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15249943-0D1D-4FEA-84B2-13377C078B66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97D50F4C-3A55-4617-B961-B044B7C5C5DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97D50F4C-3A55-4617-B961-B044B7C5C5DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97D50F4C-3A55-4617-B961-B044B7C5C5DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97D50F4C-3A55-4617-B961-B044B7C5C5DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

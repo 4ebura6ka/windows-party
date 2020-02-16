@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
-using WpfUi.ViewModels;
+using ServersUi.ViewModels;
 
-namespace WpfUi
+namespace ServersUi
 {
     public class Bootstrapper : BootstrapperBase
     {
