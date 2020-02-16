@@ -18,7 +18,7 @@ namespace ServersUi
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            DisplayRootViewFor<ServersViewModel>();
+            DisplayRootViewFor<LoginViewModel>();
         }
     }
 }

@@ -9,18 +9,6 @@ namespace ServersUi.ViewModels
 {
     public class ServersViewModel : Screen
     {
-        private string login = "Serz";
-        public string Login
-        {
-            get
-            {
-                return login;
-            }
-            set
-            {
-                login = value;
-                NotifyOfPropertyChange(() => Login);
-            }
-        }
+
     }
 }

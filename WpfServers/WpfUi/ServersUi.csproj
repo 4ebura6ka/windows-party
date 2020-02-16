@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{15249943-0D1D-4FEA-84B2-13377C078B66}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WpfUi</RootNamespace>
-    <AssemblyName>WpfUi</AssemblyName>
+    <RootNamespace>ServersUi</RootNamespace>
+    <AssemblyName>ServersUi</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -72,7 +72,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Models\ServerModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ServersViewModel.cs" />
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ServersView.xaml.cs">
       <DependentUpon>ServersView.xaml</DependentUpon>
     </Compile>
@@ -104,10 +109,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ServersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
