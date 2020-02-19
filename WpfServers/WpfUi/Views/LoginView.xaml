@@ -25,10 +25,10 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="Login" />
-        <TextBox Grid.Row="2" Grid.Column="1" MinWidth="100" x:Name="Login" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Username" />
+        <TextBox Grid.Row="2" Grid.Column="1" MinWidth="100" x:Name="Username" />
         <TextBlock Grid.Row="3" Grid.Column="1" Text="Password" />
         <TextBox Grid.Row="4" Grid.Column="1" MinWidth="100" x:Name="Password" />
-        <Button Grid.Row="4" Grid.Column="2" Content="Login" />
+        <Button Grid.Row="4" Grid.Column="2" Content="Login" x:Name="Login"/>
     </Grid>
 </Window>

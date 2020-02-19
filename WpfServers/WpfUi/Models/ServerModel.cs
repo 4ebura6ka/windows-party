@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServersUi.Models
 {
-    class ServerModel
+    public class ServerModel
     {
         public int Distance { get; set; }
 

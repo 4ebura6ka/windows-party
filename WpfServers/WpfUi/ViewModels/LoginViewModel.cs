@@ -9,17 +9,17 @@ namespace ServersUi.ViewModels
 {
     public class LoginViewModel : Screen
     {
-        private string login = "Serz";
-        public string Login
+        private string username = "Serz";
+        public string Username
         {
             get
             {
-                return login;
+                return username;
             }
             set
             {
-                login = value;
-                NotifyOfPropertyChange(() => Login);
+                username = value;
+                NotifyOfPropertyChange(() => Username);
             }
         }
 
@@ -31,5 +31,14 @@ namespace ServersUi.ViewModels
             set { password = value; }
         }
 
+        public bool CanLogin(string username, string password)
+        {
+            return !string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password);
+        }
+
+        public void Login (string username, string password)
+        {
+            
+        }
     }
 }
