@@ -109,7 +109,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ServersApi\ServersApi.csproj">
+      <Project>{ff590d10-2b61-4eb9-9b1f-1d9ee1e4e734}</Project>
+      <Name>ServersApi</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>

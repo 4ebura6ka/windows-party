@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using ServersApi;
 
 namespace ServersUi.ViewModels
 {
@@ -36,9 +37,13 @@ namespace ServersUi.ViewModels
             return !string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password);
         }
 
-        public void Login (string username, string password)
+        public async void Login(string username, string password)
         {
-            
+            ApiClient apiClient = new ApiClient("http://playground.tesonet.lt/v1/tokens");
+
+            Dictionary<string, string> requestParams = new Dictionary<string, string> { { "username", "tesonet" }, { "password", "partyanimal" } };
+
+            await apiClient.ApiCall(requestParams);
         }
     }
 }
