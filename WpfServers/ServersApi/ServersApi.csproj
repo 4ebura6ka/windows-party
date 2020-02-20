@@ -45,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiClient.cs" />
+    <Compile Include="AuthorizationResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServersResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

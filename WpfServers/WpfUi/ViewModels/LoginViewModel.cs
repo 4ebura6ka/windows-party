@@ -48,7 +48,7 @@ namespace ServersUi.ViewModels
             if (!string.IsNullOrEmpty(token))
             {
                 apiClient.ApiUrl = "http://playground.tesonet.lt/v1/servers";
-                var response = await apiClient.ApiCall(authParam: token);
+                var response = apiClient.RetrieveServers(token);
             }
         }
     }

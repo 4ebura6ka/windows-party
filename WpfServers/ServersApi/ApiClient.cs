@@ -29,6 +29,14 @@ namespace ServersApi
             return authResponse.Token;
         }
 
+        public async Task<ICollection<ServersResponse>> RetrieveServers(string token)
+        {
+            var jsonString = await ApiCall(authParam: token);
+            var serversResponse = JsonConvert.DeserializeObject<ICollection<ServersResponse>>(jsonString);
+
+            return serversResponse;
+        }
+
         public async Task<string> ApiCall (Dictionary<string, string> jsonParams = null, string authParam = null)
         {
             if (ApiUrl == null)
