@@ -11,30 +11,62 @@ namespace ServersApi
 {
     public class ApiClient
     {
-        private string basePath;
+        public string ApiUrl { get; set; }
 
         private HttpClient client;
 
-        public ApiClient(string basePath)
+        public ApiClient(string basePath = null)
         {
-            this.basePath = basePath;
+            ApiUrl = basePath;
             client = new HttpClient();
         }
-
-        public async Task<HttpStatusCode> ApiCall (Dictionary<string, string> parameters)
+         
+        public async Task<string> RetrieveToken(Dictionary<string, string> jsonParams)
         {
-            client.BaseAddress = new Uri(basePath);
-            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            var jsonString = await ApiCall(jsonParams);
+            AuthorizationResponse authResponse = JsonConvert.DeserializeObject<AuthorizationResponse>(jsonString);
 
-            string requestJson = JsonConvert.SerializeObject(parameters);
-            HttpContent httpContent = new StringContent(requestJson, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync(basePath, httpContent);
+            return authResponse.Token;
+        }
+
+        public async Task<string> ApiCall (Dictionary<string, string> jsonParams = null, string authParam = null)
+        {
+            if (ApiUrl == null)
+            {
+                throw new ArgumentNullException("Api Url is not set");
+            }
+            
+            if (authParam != null)
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", authParam);
+            }
+
+            HttpResponseMessage response;
+
+            if (jsonParams != null)
+            {
+                string requestJson = JsonConvert.SerializeObject(jsonParams);
+                HttpContent httpContent = new StringContent(requestJson, Encoding.UTF8, "application/json");
+
+                response = await client.PostAsync(ApiUrl, httpContent);
+            }
+            else
+            { 
+                response = await client.GetAsync(ApiUrl);
+            }
+
+            var jsonString = string.Empty;
 
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine(response.ToString());
+                jsonString = await response.Content.ReadAsStringAsync();
             }
-            return response.StatusCode;
+            else
+            {
+                throw new Exception($"Error receiving response: {response.Content}");
+            }
+
+            return jsonString;
         }
     }
 }

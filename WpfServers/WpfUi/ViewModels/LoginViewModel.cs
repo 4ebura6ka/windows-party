@@ -43,7 +43,13 @@ namespace ServersUi.ViewModels
 
             Dictionary<string, string> requestParams = new Dictionary<string, string> { { "username", "tesonet" }, { "password", "partyanimal" } };
 
-            await apiClient.ApiCall(requestParams);
+            string token = await apiClient.RetrieveToken(requestParams);
+            
+            if (!string.IsNullOrEmpty(token))
+            {
+                apiClient.ApiUrl = "http://playground.tesonet.lt/v1/servers";
+                var response = await apiClient.ApiCall(authParam: token);
+            }
         }
     }
 }
