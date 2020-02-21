@@ -17,7 +17,7 @@ namespace ServersUi.Views
     /// <summary>
     /// Interaction logic for ServersView.xaml
     /// </summary>
-    public partial class ServersView : Window
+    public partial class ServersView : UserControl
     {
         public ServersView()
         {
