@@ -11,6 +11,7 @@ namespace ServersUi.ViewModels
     public class LoginViewModel : Conductor<object>
     {
         private readonly IWindowManager _windowManager;
+        private readonly ILog _logger;
 
         private string username;
         public string Username
@@ -54,8 +55,9 @@ namespace ServersUi.ViewModels
             return !string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password);
         }
 
-        public LoginViewModel(IWindowManager windowManager)
+        public LoginViewModel(IWindowManager windowManager, ILog log)
         {
+            _logger = log;
             _windowManager = windowManager;
         }
         public async void Login(string username, string password)
@@ -71,12 +73,13 @@ namespace ServersUi.ViewModels
                 apiClient.ApiUrl = "http://playground.tesonet.lt/v1/servers";
                 var response = await apiClient.RetrieveServers(token);
                 var serversViewModel = IoC.Get<ServersViewModel>();
-                serversViewModel.ServersData = response;
+                serversViewModel.SetServers(response);
                 ActivateItem(serversViewModel);
             }
             else
             {
                 ErrorMessage = "Login failed. Please check username and password.";
+                _logger.Error(new Exception($"Login failed. Please check username and password: {username} {password} was used."));
             }
         }
     }

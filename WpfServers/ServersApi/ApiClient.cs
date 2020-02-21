@@ -73,9 +73,9 @@ namespace ServersApi
             {
                 jsonString = await response.Content.ReadAsStringAsync();
             }
-            else
+            else 
             {
-               // throw new Exception($"Error receiving response: {response.Content}");
+                Console.WriteLine($"Error receiving response: {response.Content}");
             }
 
             return jsonString;

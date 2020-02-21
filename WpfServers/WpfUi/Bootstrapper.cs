@@ -24,6 +24,7 @@ namespace ServersUi
             _container.PerRequest<LoginViewModel>();
             _container.PerRequest<ServersViewModel>();
 
+            _container.RegisterInstance(typeof(ILog), "Logger", new DebugLogger(LogManager.GetLog.GetType()));
             _container.RegisterInstance(typeof(IWindowManager), "WindowManager", new WindowManager());
         }
 
