@@ -8,8 +8,10 @@ using ServersApi;
 
 namespace ServersUi.ViewModels
 {
-    public class LoginViewModel : Screen
+    public class LoginViewModel : Conductor<object>
     {
+        private readonly IWindowManager _windowManager;
+
         private string username = "Serz";
         public string Username
         {
@@ -37,6 +39,10 @@ namespace ServersUi.ViewModels
             return !string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password);
         }
 
+        public LoginViewModel(IWindowManager windowManager)
+        {
+            _windowManager = windowManager;
+        }
         public async void Login(string username, string password)
         {
             ApiClient apiClient = new ApiClient("http://playground.tesonet.lt/v1/tokens");
@@ -48,7 +54,10 @@ namespace ServersUi.ViewModels
             if (!string.IsNullOrEmpty(token))
             {
                 apiClient.ApiUrl = "http://playground.tesonet.lt/v1/servers";
-                var response = apiClient.RetrieveServers(token);
+                var response = await apiClient.RetrieveServers(token);
+                var serversViewModel = IoC.Get<ServersViewModel>();
+                serversViewModel.ServersData = response;
+                ActivateItem(serversViewModel);
             }
         }
     }
