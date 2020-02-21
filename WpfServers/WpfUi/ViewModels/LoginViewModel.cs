@@ -12,7 +12,7 @@ namespace ServersUi.ViewModels
     {
         private readonly IWindowManager _windowManager;
 
-        private string username = "Serz";
+        private string username;
         public string Username
         {
             get
@@ -34,6 +34,21 @@ namespace ServersUi.ViewModels
             set { password = value; }
         }
 
+        private string errorMessage;
+
+        public string ErrorMessage
+        {
+            get
+            {
+                return errorMessage;
+            }
+            set
+            {
+                errorMessage = value;
+                NotifyOfPropertyChange(() => ErrorMessage);
+            }
+        }
+
         public bool CanLogin(string username, string password)
         {
             return !string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password);
@@ -47,7 +62,7 @@ namespace ServersUi.ViewModels
         {
             ApiClient apiClient = new ApiClient("http://playground.tesonet.lt/v1/tokens");
 
-            Dictionary<string, string> requestParams = new Dictionary<string, string> { { "username", "tesonet" }, { "password", "partyanimal" } };
+            Dictionary<string, string> requestParams = new Dictionary<string, string> { { "username", Username }, { "password", Password } };
 
             string token = await apiClient.RetrieveToken(requestParams);
             
@@ -58,6 +73,10 @@ namespace ServersUi.ViewModels
                 var serversViewModel = IoC.Get<ServersViewModel>();
                 serversViewModel.ServersData = response;
                 ActivateItem(serversViewModel);
+            }
+            else
+            {
+                ErrorMessage = "Login failed. Please check username and password.";
             }
         }
     }

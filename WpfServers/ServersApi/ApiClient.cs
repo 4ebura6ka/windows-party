@@ -26,7 +26,11 @@ namespace ServersApi
             var jsonString = await ApiCall(jsonParams);
             AuthorizationResponse authResponse = JsonConvert.DeserializeObject<AuthorizationResponse>(jsonString);
 
-            return authResponse.Token;
+            if (authResponse != null)
+            {
+                return authResponse.Token;
+            }
+            return string.Empty;
         }
 
         public async Task<ICollection<ServersResponse>> RetrieveServers(string token)
@@ -71,7 +75,7 @@ namespace ServersApi
             }
             else
             {
-                throw new Exception($"Error receiving response: {response.Content}");
+               // throw new Exception($"Error receiving response: {response.Content}");
             }
 
             return jsonString;
