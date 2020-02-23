@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Net.Http;
-using System.Net;
 
 namespace ServersApi
 {
@@ -23,6 +21,11 @@ namespace ServersApi
          
         public async Task<string> RetrieveToken(Dictionary<string, string> jsonParams)
         {
+            if (ApiUrl == null)
+            {
+                throw new ArgumentNullException("Api Url is not set");
+            }
+
             var jsonString = await ApiCall(jsonParams);
             AuthorizationResponse authResponse = JsonConvert.DeserializeObject<AuthorizationResponse>(jsonString);
 
@@ -41,7 +44,7 @@ namespace ServersApi
             return serversResponse;
         }
 
-        public async Task<string> ApiCall (Dictionary<string, string> jsonParams = null, string authParam = null)
+        private async Task<string> ApiCall (Dictionary<string, string> jsonParams = null, string authParam = null)
         {
             if (ApiUrl == null)
             {
