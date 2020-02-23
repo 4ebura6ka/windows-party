@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Caliburn.Micro;
 using ServersApi;
 using ServersUi.Models;
@@ -11,11 +7,9 @@ namespace ServersUi.ViewModels
 {
     public class ServersViewModel : Screen
     {
-        private readonly IWindowManager _windowManager;
         private readonly ILog _logger;
-        public ServersViewModel(IWindowManager windowManager, ILog logger)
+        public ServersViewModel(ILog logger)
         {
-            _windowManager = windowManager;
             _logger = logger;
 #if DEBUG
             Servers.Add(new ServerModel { ServerName = "Canada #10", Distance = "4073" });
@@ -44,7 +38,7 @@ namespace ServersUi.ViewModels
             shellViewModel.OpenLoginView();
         }
 
-        public void SetServers(ICollection<ServersResponse> ServersData)
+        public void FormatServersData(ICollection<ServersResponse> ServersData)
         {
             Servers = new BindableCollection<ServerModel>();
             foreach (var serverData in ServersData)

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Navigation;
 using Caliburn.Micro;
 using ServersUi.ViewModels;
 
@@ -13,10 +9,12 @@ namespace ServersUi
     public class Bootstrapper : BootstrapperBase
     {
         private SimpleContainer _container = new SimpleContainer();
+
         public Bootstrapper()
         {
             Initialize();
         }
+
         protected override void Configure()
         {
             _container = new SimpleContainer();

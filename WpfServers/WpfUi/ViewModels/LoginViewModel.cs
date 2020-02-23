@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Caliburn.Micro;
 using ServersApi;
 
@@ -10,30 +7,11 @@ namespace ServersUi.ViewModels
 {
     public class LoginViewModel : Screen
     {
-        private readonly IWindowManager _windowManager;
         private readonly ILog _logger;
 
-        private string username;
-        public string Username
-        {
-            get
-            {
-                return username;
-            }
-            set
-            {
-                username = value;
-                NotifyOfPropertyChange(() => Username);
-            }
-        }
+        public string Username { get; set; }
 
-        private string password;
-
-        public string Password
-        {
-            get { return password; }    
-            set { password = value; }
-        }
+        public string Password { get; set; }
 
         private string errorMessage;
 
@@ -55,13 +33,9 @@ namespace ServersUi.ViewModels
             return !string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password);
         }
     
-        public LoginViewModel(IWindowManager windowManager, ILog log)
+        public LoginViewModel(ILog log)
         {
             _logger = log;
-            _windowManager = windowManager;
-
-            Password = "partyanimal";
-            Username = "tesonet";
         }
 
         public async void Login(string username, string password)
@@ -76,8 +50,9 @@ namespace ServersUi.ViewModels
             {
                 apiClient.ApiUrl = "http://playground.tesonet.lt/v1/servers";
                 var response = await apiClient.RetrieveServers(token);
+
                 var serversViewModel = IoC.Get<ServersViewModel>();
-                serversViewModel.SetServers(response);
+                serversViewModel.FormatServersData(response);
 
                 var shellViewModel = IoC.Get<ShellViewModel>();
                 shellViewModel.OpenServersView();
