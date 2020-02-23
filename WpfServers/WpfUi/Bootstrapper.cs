@@ -21,8 +21,9 @@ namespace ServersUi
         {
             _container = new SimpleContainer();
 
-            _container.PerRequest<LoginViewModel>();
-            _container.PerRequest<ServersViewModel>();
+            _container.RegisterSingleton(typeof(LoginViewModel), "loginViewModel", typeof(LoginViewModel));
+            _container.RegisterSingleton(typeof(ServersViewModel), "serversViewModel", typeof(ServersViewModel));
+            _container.RegisterSingleton(typeof(ShellViewModel), "shellViewModel", typeof(ShellViewModel));
 
             _container.RegisterInstance(typeof(ILog), "Logger", new DebugLogger(LogManager.GetLog.GetType()));
             _container.RegisterInstance(typeof(IWindowManager), "WindowManager", new WindowManager());
@@ -44,7 +45,7 @@ namespace ServersUi
         }
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            DisplayRootViewFor<LoginViewModel>();
+            DisplayRootViewFor<ShellViewModel>();
         }
     }
 }

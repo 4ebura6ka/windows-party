@@ -9,10 +9,14 @@ using ServersUi.Models;
 
 namespace ServersUi.ViewModels
 {
-    public class ServersViewModel : Conductor<object>
+    public class ServersViewModel : Screen
     {
-        public ServersViewModel()
+        private readonly IWindowManager _windowManager;
+        private readonly ILog _logger;
+        public ServersViewModel(IWindowManager windowManager, ILog logger)
         {
+            _windowManager = windowManager;
+            _logger = logger;
 #if DEBUG
             Servers.Add(new ServerModel { ServerName = "Canada #10", Distance = "4073" });
             Servers.Add(new ServerModel { ServerName = "Lithuania #2", Distance = "874" });
@@ -36,9 +40,10 @@ namespace ServersUi.ViewModels
             loginViewModel.Username = string.Empty;
             loginViewModel.Password = string.Empty;
 
-            ActivateItem(loginViewModel);
-            Console.WriteLine("logged out");
+            var shellViewModel = IoC.Get<ShellViewModel>();
+            shellViewModel.OpenLoginView();
         }
+
         public void SetServers(ICollection<ServersResponse> ServersData)
         {
             Servers = new BindableCollection<ServerModel>();

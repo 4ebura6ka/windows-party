@@ -224,8 +224,5 @@
                 <TextBlock Margin="12,2,0,0" FontSize="18">Logout</TextBlock>
             </StackPanel>
         </Button>
-        <ContentControl Grid.RowSpan="2"
-                        Grid.ColumnSpan="3"
-                        x:Name="ActiveItem" />
     </Grid>
 </UserControl>
