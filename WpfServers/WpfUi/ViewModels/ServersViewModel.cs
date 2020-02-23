@@ -14,10 +14,10 @@ namespace ServersUi.ViewModels
         public ServersViewModel()
         {
 #if DEBUG
-            Servers.Add(new ServerModel { ServerName = "Canada #10", Distance = 4073 });
-            Servers.Add(new ServerModel { ServerName = "Lithuania #2", Distance = 874 });
-            Servers.Add(new ServerModel { ServerName = "Latvia #2", Distance = 41 });
-            Servers.Add(new ServerModel { ServerName = "France #3", Distance = 687 });
+            Servers.Add(new ServerModel { ServerName = "Canada #10", Distance = "4073" });
+            Servers.Add(new ServerModel { ServerName = "Lithuania #2", Distance = "874" });
+            Servers.Add(new ServerModel { ServerName = "Latvia #2", Distance = "41" });
+            Servers.Add(new ServerModel { ServerName = "France #3", Distance = "687" });
 #endif
         }
         private BindableCollection<ServerModel> _servers = new BindableCollection<ServerModel>();
@@ -46,7 +46,7 @@ namespace ServersUi.ViewModels
             {
                 ServerModel serverModel = new ServerModel();
 
-                serverModel.Distance = serverData.Distance;
+                serverModel.Distance = serverData.Distance + " km";
                 serverModel.ServerName = serverData.ServerName;
 
                 Servers.Add(serverModel);

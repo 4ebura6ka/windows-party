@@ -128,9 +128,13 @@
             <RowDefinition Height="120" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1"
+        <Grid Grid.Row="1"
               Grid.Column="1">
-            <Grid Background="#F5F5F5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Background="#F5F5F5" Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="auto" />
@@ -159,42 +163,44 @@
                 <Separator Grid.ColumnSpan="3"
                            Grid.Row="0" />
             </Grid>
-            <ItemsControl x:Name="Servers">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="60" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="{Binding ServerName}"
-                                       Grid.Column="0"
-                                       Grid.Row="0"
-                                       Foreground="#999999"
-                                       FontSize="17"
-                                       Margin="40,0,0,0"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Left" />
-                            <TextBlock Text="{Binding Distance}"
-                                       Grid.Column="2"
-                                       HorizontalAlignment="Right"
-                                       VerticalAlignment="Center"
-                                       FontSize="17"
-                                       Grid.Row="0"
-                                       Margin="0,0,40,0"
-                                       Foreground="#999999" />
-                            <Separator Grid.ColumnSpan="3"
-                                       Grid.Row="1" />
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
+            <ScrollViewer CanContentScroll="True" Grid.Row="1">
+                <ItemsControl x:Name="Servers">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{Binding ServerName}"
+                                           Grid.Column="0"
+                                           Grid.Row="0"
+                                           Foreground="#999999"
+                                           FontSize="17"
+                                           Margin="40,0,0,0"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" />
+                                <TextBlock Text="{Binding Distance}"
+                                           Grid.Column="2"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontSize="17"
+                                           Grid.Row="0"
+                                           Margin="0,0,40,0"
+                                           Foreground="#999999" />
+                                <Separator Grid.ColumnSpan="3"
+                                           Grid.Row="1" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
         <Image Source="/Assets/logotype-testio-1.png"
                Margin="40,0,30,0"
                Stretch="None"

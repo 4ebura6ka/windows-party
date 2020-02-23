@@ -8,7 +8,7 @@ namespace ServersUi.Models
 {
     public class ServerModel
     {
-        public int Distance { get; set; }
+        public string Distance { get; set; }
 
         public string ServerName { get; set; }
     }
